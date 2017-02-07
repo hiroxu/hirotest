@@ -20,7 +20,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 var routerobj = require('./scripts/registrouter.js');
 routerobj.registRouter(app);
 
-var port = process.env.port || 5000;
-app.listen(port, function () {
-    console.log('%s listening at %s', app.name, app.url);
+var server = app.listen(process.env.port || 5000, function () {
+    var port = server.address().port;
+    console.log('%s listening at %s port %s', app.name, app.url, port);
 });
