@@ -3,6 +3,9 @@
   "version": "0.0.0",
   "description": "linebot",
   "main": "app.js",
+  "scripts":{
+	 "start": "node ."
+  },
   "author": {
     "name": "hiro"
   },
