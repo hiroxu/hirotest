@@ -1,33 +1,41 @@
 ﻿var linebot = require('linebot');
 var bodyParser = require('body-parser');
-
-var bot = linebot({
-    channelId: '1499888713',
-    channelSecret: '6d53032b1569c18e7288cc431707aab4',
-    channelAccessToken: 'ODMhVyhYF+NU+UsKMrLtzPfwY6eZVFYchFHwh9uzCc15l4OolmgzSqbHFF0fEKvhzURZJVUb915wpDjCH9P9iBlGcT9VP+pUchc4QfsAyPH/YXybobSwaqjFFkk/MI7Acx9QipbMgm8ktYDaAaFJGAdB04t89/1O/w1cDnyilFU='
+var _ = require('lodash');
+var request = require('superagent');
+var LineBot = require('line-bot-sdk');
+var client = LineBot.client({
+    channelID: 'YOUR_CHANNEL_ID',
+    channelSecret: 'YOUR_CHANNEL_SECRET',
+    channelMID: 'YOUR_CHANNEL_MID'
 });
 
-const parser = bodyParser.json({
-    verify: function (req, res, buf, encoding) {
-        console.log("5678");
-        req.rawBody = buf.toString(encoding);
-    }
-});
 
-function callback(req, res) {
-    console.log("55555");
-    if (!bot.verify(req.rawBody, req.get('X-Line-Signature'))) {
-        return res.sendStatus(400);
-    }
-    bot.parse(req.body);
-    return res.json({});
+//var bot = linebot({
+//    channelId: '1499888713',
+//    channelSecret: '6d53032b1569c18e7288cc431707aab4',
+//    channelAccessToken: 'ODMhVyhYF+NU+UsKMrLtzPfwY6eZVFYchFHwh9uzCc15l4OolmgzSqbHFF0fEKvhzURZJVUb915wpDjCH9P9iBlGcT9VP+pUchc4QfsAyPH/YXybobSwaqjFFkk/MI7Acx9QipbMgm8ktYDaAaFJGAdB04t89/1O/w1cDnyilFU='
+//});
+
+//const parser = bodyParser.json({
+//    verify: function (req, res, buf, encoding) {
+//        console.log("5678");
+//        req.rawBody = buf.toString(encoding);
+//    }
+//});
+
+function callback(req, res, next) {
+    console.log(req.body.result);
+
+    var receives = client.createReceivesFromJSON(req.body);
+    res.end("ok");
+    return next();
 }
-bot.on('message', function (event) {
-    console.log("1234");
-    console.log(event); //把收到訊息的 event 印出來看看
-})
+//bot.on('message', function (event) {
+//    console.log("1234");
+//    console.log(event); //把收到訊息的 event 印出來看看
+//})
 
-const linebotParser = bot.parser();
+//const linebotParser = bot.parser();
 
 function test(req, res, next) {
     res.end("you got mail...");
