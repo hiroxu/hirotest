@@ -21,7 +21,8 @@ function callback(req, res, next) {
                     }
                 ]
             })
-        }    
+        }   
+        return Promise.resolve(); 
     })
     Promise.all(promises).then(() => res.json({ success: true }));
 
