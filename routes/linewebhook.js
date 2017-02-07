@@ -15,6 +15,7 @@ const parser = bodyParser.json({
 });
 
 function callback(req, res) {
+    console.log("55555");
     if (!bot.verify(req.rawBody, req.get('X-Line-Signature'))) {
         return res.sendStatus(400);
     }
