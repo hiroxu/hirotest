@@ -7,6 +7,7 @@ var bot = linebot({
 });
 
 bot.on('message', function (event) {
+    console.log("1234");
     console.log(event); //把收到訊息的 event 印出來看看
 })
 
