@@ -41,8 +41,8 @@ function callback(req, res, next) {
 
     const promises = req.body.events.map(event => {
         // reply message
-        return line.client
-            .replyMessage({
+        console.log(event);
+        return line.client.replyMessage({
                 replyToken: event.replyToken,
                 messages: [
                     {
