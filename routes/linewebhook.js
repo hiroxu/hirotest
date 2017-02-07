@@ -13,7 +13,9 @@ function callback(req, res, next) {
         console.log(event);
         var message = "無法辨識的訊息";
         if (event.type === 'message') {
-            message = event.message.text;
+            if (event.message.type === "text") {
+                message = event.message.text;
+            }
         }
         return line.client.replyMessage({
             replyToken: event.replyToken,
