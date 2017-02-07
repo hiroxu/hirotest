@@ -9,6 +9,7 @@ var bot = linebot({
 
 const parser = bodyParser.json({
     verify: function (req, res, buf, encoding) {
+        console.log("5678");
         req.rawBody = buf.toString(encoding);
     }
 });
