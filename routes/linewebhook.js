@@ -13,14 +13,13 @@ bot.on('message', function (event) {
 const linebotParser = bot.parser();
 
 function test(req, res, next) {
-    Log("you got mail...");
     res.end("you got mail...");
     return next();
 }
 
 module.exports.route = {
     get: {
-        'test': [test]
+        '/': [test]
     },
     post: {
         'linewebhook': [linebotParser]
