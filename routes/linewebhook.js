@@ -55,12 +55,12 @@ function callback(req, res, next) {
     Promise.all(promises).then(() => res.json({ success: true }));
 
 }
-bot.on('message', function (event) {
-    console.log("1234");
-    console.log(event); //把收到訊息的 event 印出來看看
-})
+//bot.on('message', function (event) {
+//    console.log("1234");
+//    console.log(event); //把收到訊息的 event 印出來看看
+//})
 
-const linebotParser = bot.parser();
+//const linebotParser = bot.parser();
 
 function test(req, res, next) {
     res.end("you got mail...");
