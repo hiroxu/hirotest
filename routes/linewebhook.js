@@ -6,6 +6,19 @@ var bot = linebot({
     channelAccessToken: 'ODMhVyhYF+NU+UsKMrLtzPfwY6eZVFYchFHwh9uzCc15l4OolmgzSqbHFF0fEKvhzURZJVUb915wpDjCH9P9iBlGcT9VP+pUchc4QfsAyPH/YXybobSwaqjFFkk/MI7Acx9QipbMgm8ktYDaAaFJGAdB04t89/1O/w1cDnyilFU='
 });
 
+const parser = bodyParser.json({
+    verify: function (req, res, buf, encoding) {
+        req.rawBody = buf.toString(encoding);
+    }
+});
+
+function callback(req, res) {
+    if (!bot.verify(req.rawBody, req.get('X-Line-Signature'))) {
+        return res.sendStatus(400);
+    }
+    bot.parse(req.body);
+    return res.json({});
+}
 bot.on('message', function (event) {
     console.log("1234");
     console.log(event); //把收到訊息的 event 印出來看看
@@ -23,6 +36,6 @@ module.exports.route = {
         '/': [test]
     },
     post: {
-        'linewebhook': [linebotParser]
+        'linewebhook': [parser, callback]
     }
 };
