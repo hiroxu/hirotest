@@ -1,0 +1,15 @@
+{
+  "name": "linebot",
+  "version": "0.0.0",
+  "description": "linebot",
+  "main": "app.js",
+  "author": {
+    "name": "hiro"
+  },
+  "dependencies": {
+    "body-parser": "^1.16.0",
+    "morgan": "^1.8.0",
+    "restify": "^4.3.0",
+    "linebot": "^1.2.1"
+  }
+}
