@@ -1,4 +1,5 @@
 ﻿var linebot = require('linebot');
+var bodyParser = require('body-parser');
 
 var bot = linebot({
     channelId: '1499888713',
