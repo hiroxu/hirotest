@@ -11,7 +11,8 @@ function callback(req, res, next) {
     const promises = req.body.events.map(event => {
         // reply message
         console.log(event);
-        return line.client.replyMessage({
+        if (event.type === 'message') {
+            return line.client.replyMessage({
                 replyToken: event.replyToken,
                 messages: [
                     {
@@ -20,6 +21,7 @@ function callback(req, res, next) {
                     }
                 ]
             })
+        }    
     })
     Promise.all(promises).then(() => res.json({ success: true }));
 
