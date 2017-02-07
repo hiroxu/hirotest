@@ -11,18 +11,19 @@ function callback(req, res, next) {
     const promises = req.body.events.map(event => {
         // reply message
         console.log(event);
+        var message = "無法辨識的訊息";
         if (event.type === 'message') {
-            return line.client.replyMessage({
-                replyToken: event.replyToken,
-                messages: [
-                    {
-                        type: 'text',
-                        text: event.message.text
-                    }
-                ]
-            })
-        }   
-        return Promise.resolve(); 
+            message = event.message.text;
+        }
+        return line.client.replyMessage({
+            replyToken: event.replyToken,
+            messages: [
+                {
+                    type: 'text',
+                    text: message
+                }
+            ]
+        })           
     })
     Promise.all(promises).then(() => res.json({ success: true }));
 
