@@ -1,4 +1,5 @@
 ﻿var linebot = require('linebot');
+
 var bot = linebot({
     channelId: '1499888713',
     channelSecret: '6d53032b1569c18e7288cc431707aab4',
@@ -8,10 +9,18 @@ var bot = linebot({
 bot.on('message', function (event) {
     console.log(event); //把收到訊息的 event 印出來看看
 })
+
 const linebotParser = bot.parser();
+
+function test(req, res, next) {
+    Log("you got mail...");
+    res.end("you got mail...");
+    return next();
+}
 
 module.exports.route = {
     get: {
+        'test': [test]
     },
     post: {
         'linewebhook': [linebotParser]
