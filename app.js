@@ -14,8 +14,11 @@ if (type == "http") {
     app = restify.createServer(https_options);
 }
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+//app.use(bodyParser.json());
+//app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: false, limit: 2 * 1024 * 1024 }));
+app.use(bodyParser.json({ limit: 2 * 1024 * 1024 }));
+
 
 var routerobj = require('./scripts/registrouter.js');
 routerobj.registRouter(app);
