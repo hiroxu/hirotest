@@ -25,7 +25,7 @@ var client = LineBot.client({
 
 function callback(req, res, next) {
     try {
-        console.log(req.body.result);
+        console.log(req.body);
 
         //var receives = client.createReceivesFromJSON(req.body);
     } catch (error) {
