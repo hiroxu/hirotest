@@ -4,9 +4,9 @@ var _ = require('lodash');
 var request = require('superagent');
 var LineBot = require('line-bot-sdk');
 var client = LineBot.client({
-    channelID: 'YOUR_CHANNEL_ID',
-    channelSecret: 'YOUR_CHANNEL_SECRET',
-    channelMID: 'YOUR_CHANNEL_MID'
+    channelID: '1499888713',
+    channelSecret: '6d53032b1569c18e7288cc431707aab4',
+    channelToken: 'ODMhVyhYF+NU+UsKMrLtzPfwY6eZVFYchFHwh9uzCc15l4OolmgzSqbHFF0fEKvhzURZJVUb915wpDjCH9P9iBlGcT9VP+pUchc4QfsAyPH/YXybobSwaqjFFkk/MI7Acx9QipbMgm8ktYDaAaFJGAdB04t89/1O/w1cDnyilFU='
 });
 
 
@@ -51,6 +51,6 @@ module.exports.route = {
         '/': [test]
     },
     post: {
-        'linewebhook': [parser, callback]
+        'linewebhook': [callback]
     }
 };
