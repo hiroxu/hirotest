@@ -1,5 +1,7 @@
 ﻿var bodyParser = require('body-parser');
 const line = require('node-line-bot-api')
+var Storage = require('node-storage');
+const store = new Storage('./file');
 
 console.log("channel_secret:%s access_token:%s", process.env.channelSecret, process.env.accessToken); 
 
@@ -8,20 +10,21 @@ line.init({
     channelSecret: process.env.channelSecret
 })
 
-function getUserProfile(userid,target_uid) {
+function saveUserProfile(target_uid) {
     line.client.getProfile(target_uid)
         .then((profile) => {
-            console.log(profile);
-            var data = {
-                to: userid,
-                messages: [
-                    {
-                        "type": "text",
-                        "text": ("DisplayName:" + profile.displayName + " StatusMessage:" + profile.statusMessage)
-                    }
-                ]
-            };
-            return line.client.pushMessage(data).then(() => console.log("send message to user success")).catch(err => console.log(err));
+            store.put(target_uid, { user: { id: target_uid, displayname: profile.displayName}});
+            //console.log(profile);
+            //var data = {
+            //    to: userid,
+            //    messages: [
+            //        {
+            //            "type": "text",
+            //            "text": ("DisplayName:" + profile.displayName + " StatusMessage:" + profile.statusMessage)
+            //        }
+            //    ]
+            //};
+            //return line.client.pushMessage(data).then(() => console.log("send message to user success")).catch(err => console.log(err));
         }).catch(err => console.log(err));
 }
 
@@ -35,6 +38,7 @@ function callback(req, res, next) {
                 message = event.message.text;
             }
         } else if (event.type === 'follow') {
+            saveUserProfile(event.source.userId);
             message = "歡迎使用肉肉肖幫手";
         }
         return line.client.replyMessage({
