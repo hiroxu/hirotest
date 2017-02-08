@@ -47,7 +47,7 @@ function callback(req, res, next) {
             saveUserProfile(event.source.userId);
             message = "歡迎使用肉肉肖幫手";
         }
-        store.remove(event.source.userId);
+        //store.remove(event.source.userId);
         return line.client.replyMessage({
             replyToken: event.replyToken,
             messages: [
