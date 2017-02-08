@@ -14,10 +14,12 @@ function getUserProfile(userid,target_uid) {
                     messages: [
                         {
                             "type": "text",
-                            "text": profile
+                            "text": "ffff"
                         }
                     ]
-                })
+            })
+            .then(() => console.log({ success: true }))
+            .catch(err => console.log(err))
         })
 }
 function callback(req, res, next) {
