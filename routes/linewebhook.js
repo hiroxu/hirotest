@@ -1,6 +1,8 @@
 ﻿var bodyParser = require('body-parser');
 const line = require('node-line-bot-api')
 
+console.log("channel_secret:%s access_token:%s", process.env.channelSecret, process.env.accessToken); 
+
 line.init({
     accessToken: process.env.accessToken,
     channelSecret: process.env.channelSecret
