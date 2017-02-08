@@ -32,6 +32,10 @@ function callback(req, res, next) {
     //getUserProfile('U55dfe73ed50291498e30fcb60faeb2e7', 'U55dfe73ed50291498e30fcb60faeb2e7');
     const promises = req.body.events.map(event => {    
         console.log(event);
+        var data = store.get(event.source.userId);
+        if (data) {
+            console.log(data.user.displayname);
+        }
         var message = "無法辨識的訊息";
         if (event.type === 'message') {
             if (event.message.type === "text") {
