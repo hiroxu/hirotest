@@ -19,9 +19,10 @@ function getUserProfile(userid,target_uid) {
                     }
                 ]
             };
-            line.client.pushMessage(data).then(() => console.log("send message to user success")).catch(err => console.log(err));
+            return line.client.pushMessage(data).then(() => console.log("send message to user success")).catch(err => console.log(err));
         }).catch(err => console.log(err));
 }
+
 function callback(req, res, next) {
     //getUserProfile('U55dfe73ed50291498e30fcb60faeb2e7', 'U55dfe73ed50291498e30fcb60faeb2e7');
     const promises = req.body.events.map(event => {    
