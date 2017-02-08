@@ -9,18 +9,18 @@ line.init({
 function getUserProfile(userid,target_uid) {
     line.client.getProfile(target_uid)
         .then((profile) => {
-            line.client.pushMessage({
-                    to: userid,
-                    messages: [
-                        {
-                            "type": "text",
-                            "text": "ffff"
-                        }
-                    ]
-            })
-            .then(() => console.log({ success: true }))
-            .catch(err => console.log(err))
-        })
+            console.log(profile);
+            var data = {
+                to: userid,
+                messages: [
+                    {
+                        "type": "text",
+                        "text": "ffff"
+                    }
+                ]
+            };
+            line.client.pushMessage(data).then(() => console.log("send message to user success")).catch(err => console.log(err));
+        }).catch(err => console.log(err));
 }
 function callback(req, res, next) {
     getUserProfile('U55dfe73ed50291498e30fcb60faeb2e7', 'U55dfe73ed50291498e30fcb60faeb2e7');
