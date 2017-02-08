@@ -23,7 +23,7 @@ function getUserProfile(userid,target_uid) {
         }).catch(err => console.log(err));
 }
 function callback(req, res, next) {
-    getUserProfile('U55dfe73ed50291498e30fcb60faeb2e7', 'U55dfe73ed50291498e30fcb60faeb2e7');
+    //getUserProfile('U55dfe73ed50291498e30fcb60faeb2e7', 'U55dfe73ed50291498e30fcb60faeb2e7');
     const promises = req.body.events.map(event => {    
         console.log(event);
         var message = "無法辨識的訊息";
@@ -31,6 +31,8 @@ function callback(req, res, next) {
             if (event.message.type === "text") {
                 message = event.message.text;
             }
+        } else if (event.type === 'follow') {
+            message = "歡迎使用肉肉肖幫手";
         }
         return line.client.replyMessage({
             replyToken: event.replyToken,
