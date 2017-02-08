@@ -15,7 +15,7 @@ function getUserProfile(userid,target_uid) {
                 messages: [
                     {
                         "type": "text",
-                        "text": "ffff"
+                        "text": ("DisplayName:" + profile.displayName + " StatusMessage:" + profile.statusMessage)
                     }
                 ]
             };
