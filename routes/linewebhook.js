@@ -33,7 +33,9 @@ function callback(req, res, next) {
     const promises = req.body.events.map(event => {    
         console.log(event);
         var data = store.get(event.source.userId);
-        if (data) {
+        if (!data) {
+            saveUserProfile(event.source.userId);           
+        } else {
             console.log(data.user.displayname);
         }
         var message = "無法辨識的訊息";
